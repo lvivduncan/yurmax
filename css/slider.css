@@ -1,0 +1,423 @@
+#levus-slider {
+  margin: 110px 0 0;
+  height: 530px;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--black);
+}
+
+/* //////////////
+кнопки управління
+////////////// */
+
+#levus-left,
+#levus-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  z-index: 3;
+  opacity: .5;
+  outline: 1px solid var(--light);
+
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+}
+
+#levus-left:hover,
+#levus-right:hover {
+  opacity: 1;
+}
+
+/* arrows */
+#levus-left::after,
+#levus-right::after{
+  content: '';
+  display: block; 
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -8px auto auto -8px;
+}
+
+#levus-left::after {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAC4npUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHja7ZdNktwgDIX3nCJHQBJCcBwwUJUb5Ph5YNr9M5NUZZJFFm3aBqvxE7wPM9Ou//g+3DcclIVdUEsxx+hxhBwyFzSSP4+zJh/Wdd/4W+Mp7q4vGCFBLedt7Lt/QVzvD1jY8focd3ZsnbSFbspbUGZmRqPtQW4h4TNO+95lPhslPkxnn3U/vDL7j/fBYEZT6MEj7kLi15XPTHKeBafiSkLoSCJoqwRcWfJH/5x/9PDFwKv14p8/dlzudpxCt2nFF592nPRz/5ZLjyMivjLz44hMrhQf/BujpTH6ObsSooNdcU/qNpXVQscKO2U9FlEMp6Jtq2SU5Is/QK1hqtX5iptMDMcHBWpUaFBf9UEHhhi4s6FmPlhWLIlx5kMmgjALDTYnWZokkDhAThDmayy08uaZD8kSMjdCTyaIgfFzca+Br5YnoTHmMify6fIK4+K5vjCMSW5e0QtAaGxPdflL7qz86zHBCgjqsjlhgsXXU6Iq3deWLM7i1aFr8Of7Qta2ACxCbsVgsK4D+UiiFMkbsxHBxwQ+BSNnCVxBgNQpN4ySg0gEnMQzN54xWn1Z+QxjewEIlSgGNFkKYIWgIeJ9S1hCxaloUNWopkmzligxRI0xWpz7VDGxYGrRzJJlK0lSSJpispRSTiVzFmxj6nLMllPOuRQkLaFAq6B/QaBylRqq1litppprObB8jnDoEQ870pGP0rhJwxbgWmzWUsutdOpYSj107bFbTz33MrDWhowwdMRhI408ykVtU32m9kru99RoU+MFavazOzWEzW4SNLcTncxAjAOBuE0CWNA8mflEIfAkN5n5zOJElDFKnXAaTWIgGDqxDrrY3cn9kpuDu3/KjT8j5ya6f0HOTXQP5D5y+4RaK2u7lQVovoXwFDuk4PVDp8IJH/w5+Vrt/F8KvIXeQm+ht9Bb6C30FvqvhGTgnwf84HM/AZpvkhuP9lSuAAABI2lDQ1BJQ0MgcHJvZmlsZQAAKJGdkL1Kw2AUhp/UX2qdFAdxyOBacDGTS1UIQoUYK1id0iTFYhJDklK8A+9EL6aDIHgFXoGCs+8XHRzM4geH83A4533P+aBlJ2FaLu5BmlWF6/eGl8Mre+WNJdZo49AJwjLveV6fxvf5imXyS9doNff9+ZajuAyV54oszIsKrAOxM6tywwo2bwf+kfhBbEdpFomfxLtRGhk2s36aTMMfTbNNJ84uzk1dsYPLCad42IyYMiGhoqucqXKsK/eVXQoC7ikJlRNi1WbqqbgRlVJyORQNRNqmwW+79vPkMpLGRFrG4Y5UmsYP87/fYx9n9aS1Nc+DIqhLC4rWeAzvj7A+hI1naF83eK3+vq2hx6l7/nnjF96vUGBHDVX4AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH5AULCjYfV2PiEwAAAFtJREFUKM9j+M+ABYr9P/1fBsLGJi36/8L/eBiPgDSmAjRpdAUY0qgKsEgjK8AqjVDA9//i/wRsXmZiIASQrLj4Px23FTiVoHsTQwlmQKEpITmoiYgsWHRLQ9gALMIBruJzRkoAAAAASUVORK5CYII=');
+}
+
+#levus-right::after {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAC4npUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHja7ZdNktwgDIX3nCJHQBJCcBwwUJUb5Ph5YNr9M5NUZZJFFm3aBqvxE7wPM9Ou//g+3DcclIVdUEsxx+hxhBwyFzSSP4+zJh/Wdd/4W+Mp7q4vGCFBLedt7Lt/QVzvD1jY8focd3ZsnbSFbspbUGZmRqPtQW4h4TNO+95lPhslPkxnn3U/vDL7j/fBYEZT6MEj7kLi15XPTHKeBafiSkLoSCJoqwRcg9hH/5x/9PDFwKv14p8/dlzudpxCt2nFF592nPRz/5ZLjyMivjLz44hMrhQf/BujpTH6ObsSooNdcU/qNpXVQscKO2U9FlEMp6Jtq2SU5Is/QK1hqtX5iptMDMcHBWpUaFBf9UEHhhi4s6FmPlhWLIlx5kMmgjALDTYnWZokcDpAThDmayy08uaZD8kSMjdCTyaIgfFzca+Br5YnoTHmMify6fIK4+K5vjCMSW5e0QtAaGxPdflL7qz86zHBCgjqsjlhgsXXU6Iq3deWLM7i1aFr8Of7Qta2ACxCbsVgsK4D+UiiFMkbsxHBxwQ+BSNnCVxBgNQpN4ySg0gEnMQzN54xWn1Z+QxjewEIlSgGNFkKYIWgIeJ9S1hCxaloUNWopkmzligxRI0xWpz7VDGxYGrRzJJlK0lSSJpispRSTiVzFmxj6nLMllPOuRQkLaFAq6B/QaBylRqq1litppprObB8jnDoEQ870pGP0rhJwxbgWmzWUsutdOpYSj107bFbTz33MrDWhowwdMRhI408ykVtU32m9kru99RoU+MFavazOzWEzW4SNLcTncxAjAOBuE0CWNA8mflEIfAkN5n5zOJElDFKnXAaTWIgGDqxDrrY3cn9kpuDu3/KjT8j5ya6f0HOTXQP5D5y+4RaK2u7lQVovoXwFDuk4PVDp8IJH/w5+Vrt/F8KvIXeQm+ht9Bb6C30FvqvhGTgn4eMn1M/AZpzkhuoIiXdAAABI2lDQ1BJQ0MgcHJvZmlsZQAAKJGdkL1Kw2AUhp/UX2qdFAdxyOBacDGTS1UIQoUYK1id0iTFYhJDklK8A+9EL6aDIHgFXoGCs+8XHRzM4geH83A4533P+aBlJ2FaLu5BmlWF6/eGl8Mre+WNJdZo49AJwjLveV6fxvf5imXyS9doNff9+ZajuAyV54oszIsKrAOxM6tywwo2bwf+kfhBbEdpFomfxLtRGhk2s36aTMMfTbNNJ84uzk1dsYPLCad42IyYMiGhoqucqXKsK/eVXQoC7ikJlRNi1WbqqbgRlVJyORQNRNqmwW+79vPkMpLGRFrG4Y5UmsYP87/fYx9n9aS1Nc+DIqhLC4rWeAzvj7A+hI1naF83eK3+vq2hx6l7/nnjF96vUGBHDVX4AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH5AULCjYw/LLfSgAAAGFJREFUKM9j+M/wn+E/w3+Z/6f/i0HZKBDBjP9/4b8oPgU4lKBysShBNxJDCaaz0JRgcTeqEmwKGP4n/L/4nw/CZmIgBLDoT/9/EZ8VKNKYCtCk0RVgSJMU1AQiSxpXdAMARjIBrlUOo+MAAAAASUVORK5CYII=');
+}
+
+/* вліво */
+#levus-left {
+  left: 50px;
+}
+
+@media(max-width: 776px) {
+  #levus-left {
+    display: none;
+  }
+}
+
+#levus-left:hover{
+  background: var(-white);
+}
+
+/* вправо */
+#levus-right {
+  right: 50px;
+}
+
+@media(max-width: 776px) {
+  #levus-right {
+    display: none;
+  }
+}
+
+#levus-right:hover{
+  background: var(-white);
+}
+
+#levus-left.hide {
+  -webkit-transform: translateX(-150px);
+  transform: translateX(-150px);
+}
+
+#levus-right.hide {
+  -webkit-transform: translateX(150px);
+  transform: translateX(150px);
+}
+
+/* ///
+слайд 
+/// */
+
+/* прихований по дефолту */
+#levus-slider article {
+  background-size: cover !important;
+  background-position: center !important;
+  height: 530px;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-transition: background 2s;
+  transition: background 2s;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/* затемнення */
+#levus-slider article::after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* активний слайд */
+#levus-slider article.show {
+  visibility: visible;
+  -webkit-animation: background-show 3s linear forwards 0s;
+  animation: background-show 3s linear forwards 0s;
+}
+
+/* //////////////
+контент на слайді
+////////////// */
+
+.levus-content {
+  width: 1200px;
+  height: 530px;
+  padding: 100px 0;
+  margin: auto;
+  overflow: hidden;
+
+  color: var(--white);
+
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas:
+    'levus-p1 levus-img'
+    'levus-p2 levus-img'
+    'levus-p3 levus-img'
+}
+
+@media(max-width: 1250px) {
+  .levus-content {
+    width: 95%;
+    padding: 10px;
+  }
+}
+
+@media(max-width: 991px) {
+  .levus-content {
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      'levus-p1'
+      'levus-p2'
+      'levus-p3'
+      'levus-img'
+  }
+}
+
+/* ////////////
+блоки на слайді 
+//////////// */
+
+/* картинка знизу*/
+.levus-content img {
+  max-width: 100% !important;
+  height: auto !important;
+
+  grid-area: levus-img;
+
+  -webkit-transform: translateY(200%);
+  transform: translateY(200%);
+}
+
+@media(max-width: 991px) {
+  .levus-content img {
+    margin: auto;
+  }
+}
+
+/* 1 текст зліва */
+.levus-content p:nth-child(1) {
+  margin: 0 50px 5px;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--light);
+  grid-area: levus-p1;
+  align-self: end;
+
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(1) {
+    font-size: 26px;
+    line-height: 1;
+    margin: 0 10px;
+  }
+}
+
+/* 2 текст зліва */
+.levus-content p:nth-child(2) {
+  margin: 0 50px 5px;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--light);
+  grid-area: levus-p2;
+  align-self: center;
+
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(2) {
+    font-size: 26px;
+    line-height: 1;
+    margin: 0 10px;
+  }
+}
+
+/* 3 текст зліва */
+.levus-content p:nth-child(3) {
+  margin: 0 50px 5px;
+  font-size: 20px;
+  color: var(--light);
+  grid-area: levus-p3;
+  align-self: start;
+
+  -webkit-transform: translateX(-110%);
+  transform: translateX(-110%);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(3) {
+    font-size: 16px;
+    margin: 0 10px;
+  }
+}
+
+/* ///////////////////
+блоки активного слайда
+/////////////////// */
+
+.show .levus-content img {
+  -webkit-animation: img-0 1500ms linear forwards 1s;
+  animation: img-0 1500ms linear forwards 1s;
+}
+
+.show .levus-content p:nth-child(1) {
+  -webkit-animation: p-1 500ms linear forwards 1500ms;
+  animation: p-1 500ms linear forwards 1500ms;
+}
+
+.show .levus-content p:nth-child(2) {
+  -webkit-animation: p-2 500ms linear forwards 2s;
+  animation: p-2 500ms linear forwards 2s;
+}
+
+.show .levus-content p:nth-child(3) {
+  -webkit-animation: p-3 1500ms linear forwards 2500ms;
+  animation: p-3 1500ms linear forwards 2500ms;
+}
+
+/* /////////////
+анімація слайдів
+///////////// */
+
+/* анімація фону*/
+@-webkit-keyframes background-show {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+
+  100% {}
+}
+
+@keyframes background-show {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {}
+}
+
+/* анімація картинки */
+@-webkit-keyframes img-0 {
+  0% {
+    -webkit-transform: translateY(200%);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes img-0 {
+  0% {
+    transform: translateY(200%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* анімація 1 параграфа*/
+@-webkit-keyframes p-1 {
+  0% {
+    -webkit-transform: scaleY(0);
+  }
+
+  50% {
+    -webkit-transform: scaleY(-1);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes p-1 {
+  0% {
+    transform: scaleY(0);
+  }
+
+  50% {
+    transform: scaleY(-1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* анімація 2 параграфа*/
+@-webkit-keyframes p-2 {
+  0% {
+    -webkit-transform: scaleY(0);
+  }
+
+  50% {
+    -webkit-transform: scaleY(-1);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes p-2 {
+  0% {
+    transform: scaleY(0);
+  }
+
+  50% {
+    transform: scaleY(-1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* анімація 3 параграфа*/
+@-webkit-keyframes p-3 {
+  0% {
+    -webkit-transform: translateX(-110%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes p-3 {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
