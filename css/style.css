@@ -1085,34 +1085,34 @@ nav>ul>ul {
 /* опис товару */
 .gallery figcaption {
   padding: 10px 0 0;
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    'gallery-p-1 gallery-p-1'
-    'gallery-p-2 gallery-p-3'; */
 }
 
 .gallery figcaption p {
   margin: 0 0 5px;
   padding: 0;
+  /* font-weight: bold; */
   font-size: 14px;
+  text-transform: uppercase;
+  color: var(--black);
 }
 
-/* .gallery figcaption p:nth-child(1) {
-  grid-area: gallery-p-1;
-  text-align: center;
-  font-size: 16px;
+.gallery figcaption p:nth-child(2)::before,
+.gallery figcaption p:nth-child(3)::before {
+  content: '';
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--fifth);
+  text-transform: none;
+  font-style: italic;
 }
 
-.gallery figcaption p:nth-child(2) {
-  grid-area: gallery-p-2;
+.gallery figcaption p:nth-child(2)::before{
+  content: 'розмір: ';
 }
 
-.gallery figcaption p:nth-child(3) {
-  grid-area: gallery-p-3;
-  text-align: right;
-  color: var(--orange);
-} */
+.gallery figcaption p:nth-child(3)::before{
+  content: 'ціна: ';
+}
 
 /* /////////////////////////////
 блок з фото та текстовими даними
@@ -1137,10 +1137,26 @@ nav>ul>ul {
   margin: 0 0 20px;
 }
 
+@media(max-width: 776px){
+  .photo-and-text article{
+    grid-template-columns: 1fr;
+  }
+}
+
 .photo-and-text figure{
   position: relative;
 }
 
+@media(max-width: 776px){
+  .photo-and-text figure{
+    order: 1;
+  }
+  .photo-and-text figcaption{
+    order: 2;
+  }
+}
+
+/* іконка */
 .photo-and-text figure::after{
   content: '';
   background: url('data:image/png;base64,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');
