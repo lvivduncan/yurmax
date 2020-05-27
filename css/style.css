@@ -1064,14 +1064,17 @@ nav>ul>ul {
   }
 }
 
-.gallery figure {
+.gallery figure,
+.gallery3 figure,
+.gallery4 figure {
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  /* border: 10px solid var(--ivory); */
   padding: 10px;
   background: var(--ivory);
 }
 
-.gallery a {
+.gallery a,
+.gallery3 a,
+.gallery4 a {
   display: block;
   position: relative;
 }
@@ -1083,21 +1086,28 @@ nav>ul>ul {
 }
 
 /* опис товару */
-.gallery figcaption {
+.gallery figcaption,
+.gallery3 figcaption,
+.gallery4 figcaption {
   padding: 10px 0 0;
 }
 
-.gallery figcaption p {
+.gallery figcaption p,
+.gallery3 figcaption p,
+.gallery4 figcaption p {
   margin: 0 0 5px;
   padding: 0;
-  /* font-weight: bold; */
   font-size: 14px;
   text-transform: uppercase;
   color: var(--black);
 }
 
 .gallery figcaption p:nth-child(2)::before,
-.gallery figcaption p:nth-child(3)::before {
+.gallery figcaption p:nth-child(3)::before,
+.gallery3 figcaption p:nth-child(2)::before,
+.gallery3 figcaption p:nth-child(3)::before,
+.gallery4 figcaption p:nth-child(2)::before,
+.gallery4 figcaption p:nth-child(3)::before {
   content: '';
   font-size: 12px;
   font-weight: normal;
@@ -1106,11 +1116,15 @@ nav>ul>ul {
   font-style: italic;
 }
 
-.gallery figcaption p:nth-child(2)::before{
+.gallery figcaption p:nth-child(2)::before,
+.gallery3 figcaption p:nth-child(2)::before,
+.gallery4 figcaption p:nth-child(2)::before{
   content: 'розмір: ';
 }
 
-.gallery figcaption p:nth-child(3)::before{
+.gallery figcaption p:nth-child(3)::before,
+.gallery3 figcaption p:nth-child(3)::before,
+.gallery4 figcaption p:nth-child(3)::before{
   content: 'ціна: ';
 }
 

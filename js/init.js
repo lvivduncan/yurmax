@@ -9,9 +9,9 @@
 
 // menu
 $('#toggle').click(function() {
-		$(this).toggleClass('toggle-active');
-		$('#overlay').toggleClass('nav-active');
-		$('body').toggleClass('overflow-hidden');
+	$(this).toggleClass('toggle-active');
+	$('#overlay').toggleClass('nav-active');
+	$('body').toggleClass('overflow-hidden');
 });
 
 // scroll
