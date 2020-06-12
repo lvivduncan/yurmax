@@ -1,0 +1,589 @@
+/* ////////////////
+слайдер на головній
+//////////////// */
+
+#levus-slider {
+  margin: 110px 0 0;
+  height: 530px;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--black);
+}
+
+/* //////////////
+кнопки управління
+////////////// */
+
+#levus-left,
+#levus-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  z-index: 3;
+  opacity: .5;
+  outline: 1px solid var(--light);
+
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+}
+
+#levus-left:hover,
+#levus-right:hover {
+  opacity: 1;
+}
+
+/* arrows */
+#levus-left::after,
+#levus-right::after {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -8px auto auto -8px;
+}
+
+#levus-left::after {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAC4npUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHja7ZdNktwgDIX3nCJHQBJCcBwwUJUb5Ph5YNr9M5NUZZJFFm3aBqvxE7wPM9Ou//g+3DcclIVdUEsxx+hxhBwyFzSSP4+zJh/Wdd/4W+Mp7q4vGCFBLedt7Lt/QVzvD1jY8focd3ZsnbSFbspbUGZmRqPtQW4h4TNO+95lPhslPkxnn3U/vDL7j/fBYEZT6MEj7kLi15XPTHKeBafiSkLoSCJoqwRcWfJH/5x/9PDFwKv14p8/dlzudpxCt2nFF592nPRz/5ZLjyMivjLz44hMrhQf/BujpTH6ObsSooNdcU/qNpXVQscKO2U9FlEMp6Jtq2SU5Is/QK1hqtX5iptMDMcHBWpUaFBf9UEHhhi4s6FmPlhWLIlx5kMmgjALDTYnWZokkDhAThDmayy08uaZD8kSMjdCTyaIgfFzca+Br5YnoTHmMify6fIK4+K5vjCMSW5e0QtAaGxPdflL7qz86zHBCgjqsjlhgsXXU6Iq3deWLM7i1aFr8Of7Qta2ACxCbsVgsK4D+UiiFMkbsxHBxwQ+BSNnCVxBgNQpN4ySg0gEnMQzN54xWn1Z+QxjewEIlSgGNFkKYIWgIeJ9S1hCxaloUNWopkmzligxRI0xWpz7VDGxYGrRzJJlK0lSSJpispRSTiVzFmxj6nLMllPOuRQkLaFAq6B/QaBylRqq1litppprObB8jnDoEQ870pGP0rhJwxbgWmzWUsutdOpYSj107bFbTz33MrDWhowwdMRhI408ykVtU32m9kru99RoU+MFavazOzWEzW4SNLcTncxAjAOBuE0CWNA8mflEIfAkN5n5zOJElDFKnXAaTWIgGDqxDrrY3cn9kpuDu3/KjT8j5ya6f0HOTXQP5D5y+4RaK2u7lQVovoXwFDuk4PVDp8IJH/w5+Vrt/F8KvIXeQm+ht9Bb6C30FvqvhGTgnwf84HM/AZpvkhuP9lSuAAABI2lDQ1BJQ0MgcHJvZmlsZQAAKJGdkL1Kw2AUhp/UX2qdFAdxyOBacDGTS1UIQoUYK1id0iTFYhJDklK8A+9EL6aDIHgFXoGCs+8XHRzM4geH83A4533P+aBlJ2FaLu5BmlWF6/eGl8Mre+WNJdZo49AJwjLveV6fxvf5imXyS9doNff9+ZajuAyV54oszIsKrAOxM6tywwo2bwf+kfhBbEdpFomfxLtRGhk2s36aTMMfTbNNJ84uzk1dsYPLCad42IyYMiGhoqucqXKsK/eVXQoC7ikJlRNi1WbqqbgRlVJyORQNRNqmwW+79vPkMpLGRFrG4Y5UmsYP87/fYx9n9aS1Nc+DIqhLC4rWeAzvj7A+hI1naF83eK3+vq2hx6l7/nnjF96vUGBHDVX4AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH5AULCjYfV2PiEwAAAFtJREFUKM9j+M+ABYr9P/1fBsLGJi36/8L/eBiPgDSmAjRpdAUY0qgKsEgjK8AqjVDA9//i/wRsXmZiIASQrLj4Px23FTiVoHsTQwlmQKEpITmoiYgsWHRLQ9gALMIBruJzRkoAAAAASUVORK5CYII=');
+}
+
+#levus-right::after {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAC4npUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHja7ZdNktwgDIX3nCJHQBJCcBwwUJUb5Ph5YNr9M5NUZZJFFm3aBqvxE7wPM9Ou//g+3DcclIVdUEsxx+hxhBwyFzSSP4+zJh/Wdd/4W+Mp7q4vGCFBLedt7Lt/QVzvD1jY8focd3ZsnbSFbspbUGZmRqPtQW4h4TNO+95lPhslPkxnn3U/vDL7j/fBYEZT6MEj7kLi15XPTHKeBafiSkLoSCJoqwRcg9hH/5x/9PDFwKv14p8/dlzudpxCt2nFF592nPRz/5ZLjyMivjLz44hMrhQf/BujpTH6ObsSooNdcU/qNpXVQscKO2U9FlEMp6Jtq2SU5Is/QK1hqtX5iptMDMcHBWpUaFBf9UEHhhi4s6FmPlhWLIlx5kMmgjALDTYnWZokcDpAThDmayy08uaZD8kSMjdCTyaIgfFzca+Br5YnoTHmMify6fIK4+K5vjCMSW5e0QtAaGxPdflL7qz86zHBCgjqsjlhgsXXU6Iq3deWLM7i1aFr8Of7Qta2ACxCbsVgsK4D+UiiFMkbsxHBxwQ+BSNnCVxBgNQpN4ySg0gEnMQzN54xWn1Z+QxjewEIlSgGNFkKYIWgIeJ9S1hCxaloUNWopkmzligxRI0xWpz7VDGxYGrRzJJlK0lSSJpispRSTiVzFmxj6nLMllPOuRQkLaFAq6B/QaBylRqq1litppprObB8jnDoEQ870pGP0rhJwxbgWmzWUsutdOpYSj107bFbTz33MrDWhowwdMRhI408ykVtU32m9kru99RoU+MFavazOzWEzW4SNLcTncxAjAOBuE0CWNA8mflEIfAkN5n5zOJElDFKnXAaTWIgGDqxDrrY3cn9kpuDu3/KjT8j5ya6f0HOTXQP5D5y+4RaK2u7lQVovoXwFDuk4PVDp8IJH/w5+Vrt/F8KvIXeQm+ht9Bb6C30FvqvhGTgn4eMn1M/AZpzkhuoIiXdAAABI2lDQ1BJQ0MgcHJvZmlsZQAAKJGdkL1Kw2AUhp/UX2qdFAdxyOBacDGTS1UIQoUYK1id0iTFYhJDklK8A+9EL6aDIHgFXoGCs+8XHRzM4geH83A4533P+aBlJ2FaLu5BmlWF6/eGl8Mre+WNJdZo49AJwjLveV6fxvf5imXyS9doNff9+ZajuAyV54oszIsKrAOxM6tywwo2bwf+kfhBbEdpFomfxLtRGhk2s36aTMMfTbNNJ84uzk1dsYPLCad42IyYMiGhoqucqXKsK/eVXQoC7ikJlRNi1WbqqbgRlVJyORQNRNqmwW+79vPkMpLGRFrG4Y5UmsYP87/fYx9n9aS1Nc+DIqhLC4rWeAzvj7A+hI1naF83eK3+vq2hx6l7/nnjF96vUGBHDVX4AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH5AULCjYw/LLfSgAAAGFJREFUKM9j+M/wn+E/w3+Z/6f/i0HZKBDBjP9/4b8oPgU4lKBysShBNxJDCaaz0JRgcTeqEmwKGP4n/L/4nw/CZmIgBLDoT/9/EZ8VKNKYCtCk0RVgSJMU1AQiSxpXdAMARjIBrlUOo+MAAAAASUVORK5CYII=');
+}
+
+/* вліво */
+#levus-left {
+  left: 50px;
+}
+
+@media(max-width: 776px) {
+  #levus-left {
+    display: none;
+  }
+}
+
+#levus-left:hover {
+  background: var(-white);
+}
+
+/* вправо */
+#levus-right {
+  right: 50px;
+}
+
+@media(max-width: 776px) {
+  #levus-right {
+    display: none;
+  }
+}
+
+#levus-right:hover {
+  background: var(-white);
+}
+
+#levus-left.hide {
+  -webkit-transform: translateX(-150px);
+  transform: translateX(-150px);
+}
+
+#levus-right.hide {
+  -webkit-transform: translateX(150px);
+  transform: translateX(150px);
+}
+
+/* ///
+слайд 
+/// */
+
+/* прихований по дефолту */
+#levus-slider article {
+  background-size: cover !important;
+  background-position: center !important;
+  height: 530px;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-transition: background 2s;
+  transition: background 2s;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/* затемнення */
+#levus-slider article::after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* активний слайд */
+#levus-slider article.show {
+  visibility: visible;
+  -webkit-animation: background-show 3s linear forwards 0s;
+  animation: background-show 3s linear forwards 0s;
+}
+
+/* //////////////
+контент на слайді
+////////////// */
+
+.levus-content {
+  width: 1200px;
+  height: 530px;
+  padding: 100px 0;
+  margin: auto;
+  overflow: hidden;
+
+  color: var(--white);
+
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas:
+    'levus-p1 levus-img'
+    'levus-p2 levus-img'
+    'levus-p3 levus-img'
+}
+
+@media(max-width: 1250px) {
+  .levus-content {
+    width: 95%;
+    padding: 10px;
+  }
+}
+
+@media(max-width: 991px) {
+  .levus-content {
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      'levus-p1'
+      'levus-p2'
+      'levus-p3'
+      'levus-img'
+  }
+}
+
+/* ////////////
+блоки на слайді 
+//////////// */
+
+/* картинка знизу*/
+.levus-content img {
+  max-width: 100% !important;
+  height: auto !important;
+
+  grid-area: levus-img;
+
+  -webkit-transform: translateY(200%);
+  transform: translateY(200%);
+}
+
+@media(max-width: 991px) {
+  .levus-content img {
+    margin: auto;
+  }
+}
+
+/* 1 текст зліва */
+.levus-content p:nth-child(1) {
+  margin: 0 50px 5px;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--light);
+  grid-area: levus-p1;
+  align-self: end;
+
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(1) {
+    font-size: 26px;
+    line-height: 1;
+    margin: 0 10px;
+  }
+}
+
+/* 2 текст зліва */
+.levus-content p:nth-child(2) {
+  margin: 0 50px 5px;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--light);
+  grid-area: levus-p2;
+  align-self: center;
+
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(2) {
+    font-size: 26px;
+    line-height: 1;
+    margin: 0 10px;
+  }
+}
+
+/* 3 текст зліва */
+.levus-content p:nth-child(3) {
+  margin: 0 50px 5px;
+  font-size: 20px;
+  color: var(--light);
+  grid-area: levus-p3;
+  align-self: start;
+
+  -webkit-transform: translateX(-110%);
+  transform: translateX(-110%);
+}
+
+@media(max-width:776px) {
+  .levus-content p:nth-child(3) {
+    font-size: 16px;
+    margin: 0 10px;
+  }
+}
+
+/* ///////////////////
+блоки активного слайда
+/////////////////// */
+
+.show .levus-content img {
+  -webkit-animation: img-0 1500ms linear forwards 1s;
+  animation: img-0 1500ms linear forwards 1s;
+}
+
+.show .levus-content p:nth-child(1) {
+  -webkit-animation: p-1 500ms linear forwards 1500ms;
+  animation: p-1 500ms linear forwards 1500ms;
+}
+
+.show .levus-content p:nth-child(2) {
+  -webkit-animation: p-2 500ms linear forwards 2s;
+  animation: p-2 500ms linear forwards 2s;
+}
+
+.show .levus-content p:nth-child(3) {
+  -webkit-animation: p-3 1500ms linear forwards 2500ms;
+  animation: p-3 1500ms linear forwards 2500ms;
+}
+
+/* /////////////
+анімація слайдів
+///////////// */
+
+/* анімація фону*/
+@-webkit-keyframes background-show {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+
+  100% {}
+}
+
+@keyframes background-show {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {}
+}
+
+/* анімація картинки */
+@-webkit-keyframes img-0 {
+  0% {
+    -webkit-transform: translateY(200%);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes img-0 {
+  0% {
+    transform: translateY(200%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* анімація 1 параграфа*/
+@-webkit-keyframes p-1 {
+  0% {
+    -webkit-transform: scaleY(0);
+  }
+
+  50% {
+    -webkit-transform: scaleY(-1);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes p-1 {
+  0% {
+    transform: scaleY(0);
+  }
+
+  50% {
+    transform: scaleY(-1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* анімація 2 параграфа*/
+@-webkit-keyframes p-2 {
+  0% {
+    -webkit-transform: scaleY(0);
+  }
+
+  50% {
+    -webkit-transform: scaleY(-1);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes p-2 {
+  0% {
+    transform: scaleY(0);
+  }
+
+  50% {
+    transform: scaleY(-1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* анімація 3 параграфа*/
+@-webkit-keyframes p-3 {
+  0% {
+    -webkit-transform: translateX(-110%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes p-3 {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ///////////////
+сортування товарів
+/////////////// */
+
+#levus-buttons {
+  margin: 20px;
+  text-align: center;
+}
+
+#levus-buttons span {
+  cursor: pointer;
+  color: var(--ivory);
+  background: var(--orange);
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+
+/* //////////////
+стилізація кошика
+////////////// */
+
+/* ////////////////////////////////////
+кнопка кошика, анімується при наведенні
+//////////////////////////////////// */
+#basket-button {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  z-index: 8;
+  width: 52px;
+  height: 52px;
+  color: var(--orange);
+  font-weight: bold;
+
+  animation: scale 1s infinite;
+}
+
+#basket-button::before {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 52px;
+  background: var(--ivory) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADrklEQVR4nO2awUsVQRjAf/MhD5Ew8RARIh08+KxDB+nQJQ8RXQqCLknnTh2CIP8CCYpO/Qlht6KDp4I6RODFEpG0kgiVUoMiFTTU2Q67z7c+Z9/u7HP37Vv3B8Pb3TffzDfffvt9M7MLBQUFBQVHF5VGJyKqG7gAtFmIzWjtzCekUnqIqEER9UdEOZZlV0TdTlq/Q/UAEdUBtAMl79IOMAZcjtnkGlAGtO/aFrCjtbMRV08/DRlARPUA94ArwGncwafFKjAOPNLamUuxXxcRNSyi1mO49mGXfyLqbtxxxPIAETUMPAXEuzQBvAH+4rq99v5rA24C52LqtwaMGq63AxeBIZ8OI1o7D2P2Ex0R1eu78+si6kZI/cSCoIgaElErvvqDtuOx9gAR9QS4451e19p5GUEmsTQoos4D7722x7V2rlr0YY+IWvQs/i7RjiwQUWO+eNBhJWvZUTfQ452+tpFNmIouJaDfRtDKADWNp596gvnkO07UAAMBnTYb/804YyNoa4Cy97sDZGaerrWzBix5p6l4wHetnS1L2aSpeEEqMSBL7l+hYoA+ERU53UY2gJdeems6yxKz3m8J6IsqZOMB/b76s/UqNolYmcDWAKbOsoLfKwcCa9VgY4Cy7zhzj4DWzjLw2zst16vrx8YAvbibEfNe2skiU7g6nmq2Ii1D0GqwC3eHJ0/8wN1FCuUWsAk4OSvbwP2wwXcA6xlQNqmyS41n1wbBTuBYmJVaGAFO+i+YYsAKcCIVddJHA8eBvS11UxqcSk2d9PmCb/BgNsCHdHRpCgdurskAHy0afOWVIGaAZ7j7B3HkJ4AXDbRfy2SUSn1Ei6j+xiYN/28D3d7/j2PI/6S6i/w8Rvumcql2sCYP+Ib7QiKMhYDjChtU5+aLMeSXqd7ZOO2bOPB4mwygyWcgXKBqsD2CFkN5DITGMQUZwCYQtgrGMRUeEFB5DnddnSeMcS3IADvAdHK6pM4q1fcG+6i3I5SnTBA4lnoGiDRrahECY9pR8YDAm1nPANNEn2NnnViPwBbZ3P+3ZQ13em8kbFs8D4/BFPu/M9xHmAHyEAjrTuoa8YD2gOMKJV/7JcP/YfKNtl+hoWl9J+5OqmltvQkMeyVoG30Udw3+NYb8Lu7XaNeAXzHar5SzjRiAkMazXjYJ+TQvyrvBVl4YhabyKAZo5aVxaBbLuweEZrEoBmjlydCh6f6W5gc02/KZ+ukRiP6xdBcwguUnaE1kCXiA+0q8oKCgoCCI/xOaE3/tssidAAAAAElFTkSuQmCC') no-repeat center center;
+  background-size: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid var(--orange);
+}
+
+/* ///////////////////////
+анімація для кнопки кошика
+/////////////////////// */
+@-webkit-keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ////////////////////////////////////
+кошик з'являється після кліку на кнопку
+//////////////////////////////////// */
+#basket {
+  display: none;
+  text-align: center;
+}
+
+/* ////////////////
+оформити замовлення
+//////////////// */
+#basket-order {
+  cursor: pointer;
+}
+
+/* ///////////
+очистити кошик
+/////////// */
+#basket-clear {
+  cursor: pointer;
+}
+
+/* ///////////////////////
+виводимо товари у кошикові
+/////////////////////// */
+#basket-goods{
+  margin: 5px 0;
+}
+
+#basket-goods p {
+  margin: 5px 0;
+  padding: 0;
+}
+
+/* //////////
+загальна сума
+////////// */
+#basket-sum::after{
+  content: 'грн';
+}
+
+/* ////////////////////
+кнопка видалення товару
+//////////////////// */
+#basket i {
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 6px;
+  cursor: pointer;
+}
+
+#basket i::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: maroon;
+  -webkit-transform: rotate(50deg);
+  transform: rotate(50deg);
+}
+
+#basket i::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: maroon;
+  -webkit-transform: rotate(-50deg);
+  transform: rotate(-50deg);
+}
