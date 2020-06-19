@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./favicon.png" rel="shortcut icon" type="image/x-icon" />
+  <title> Оформити замовлення </title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <aside id="basket-button"></aside>
+  <!-- #basket-button -->
+
+  <div id="basket">
+    <div>Товарів: <span id="basket-quantity">0</span> | На суму: <span id="basket-sum">0</span></div>
+    <hr>
+    <div id="basket-goods"></div>
+    <hr>
+    <div><a href="checkout.html" id="basket-order" tabindex="1">Оформити</a> | <span id="basket-clear" tabindex="2">Видалити</span></div>
+  </div>
+  <!-- #basket -->
+
+  <div id="order-goods"></div>
+  <div id="order-sum"></div>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/vanilla.js"></script>
+</body>
+</html>

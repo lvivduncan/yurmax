@@ -13,7 +13,7 @@
   --first: #95BDD2;
   --fifth: #2E3536;
   --orange: #FE4F00;
-  /* --green: #0A7; */
+  --green: #0A7;
   --opacity6: rgba(255, 255, 255, .6);
 }
 
@@ -1440,7 +1440,7 @@ h3.title {
 }
 
 /* кнопка "вгору" */
-#up {
+/* #up {
   text-decoration: none;
   position: fixed;
   bottom: 20px;
@@ -1480,7 +1480,7 @@ h3.title {
 #up:hover::after {
   border: solid var(--first);
   border-width: 0 3px 3px 0;
-}
+} */
 
 /* 16-4-18 */
 .edit {

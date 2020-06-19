@@ -517,11 +517,19 @@
   text-align: center;
 }
 
+#basket hr {
+  margin: 20px 40px;
+  /* display: block; */
+}
+
 /* ////////////////
 оформити замовлення
 //////////////// */
 #basket-order {
   cursor: pointer;
+  text-decoration: none;
+  color: var(--green);
+  font-weight: bold;
 }
 
 /* ///////////
@@ -529,12 +537,14 @@
 /////////// */
 #basket-clear {
   cursor: pointer;
+  color: var(--orange);
+  font-weight: bold;
 }
 
 /* ///////////////////////
 виводимо товари у кошикові
 /////////////////////// */
-#basket-goods{
+#basket-goods {
   margin: 5px 0;
 }
 
@@ -546,7 +556,7 @@
 /* //////////
 загальна сума
 ////////// */
-#basket-sum::after{
+#basket-sum::after {
   content: 'грн';
 }
 
@@ -586,4 +596,215 @@
   background: maroon;
   -webkit-transform: rotate(-50deg);
   transform: rotate(-50deg);
+}
+
+
+
+
+/* //////////////////
+оформлення замовлення
+////////////////// */
+#order-goods {
+  width: 600px;
+  margin: 100px auto 10px;
+  padding: 10px;
+}
+
+@media(max-width: 640px) {
+  #order-goods {
+    width: 95%;
+  }
+}
+
+/* /////////////////////
+окремий товар у кошикові
+///////////////////// */
+#order-goods .product {
+  margin: 0 0 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
+  grid-template-areas: 
+    'product-img product-img product-name product-name product-delete'
+    'product-size product-price product-price product-quantity product-delete';
+}
+
+@media(max-width: 640px){
+  #order-goods .product {
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: 
+      'product-name product-delete'
+      'product-img product-delete'
+      'product-size product-delete'
+      'product-price product-delete'
+      'product-quantity product-delete';
+  }
+}
+
+#order-goods .product:nth-child(even) {
+  background: #e6e6e6;
+}
+
+.product-img {
+  grid-area: product-img;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+}
+
+.product-name {
+  grid-area: product-name;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+}
+
+.product-size {
+  grid-area: product-size;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+  text-align: center;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-price {
+  grid-area: product-price;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+  text-align: center;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+#order-goods .product .product-price p{
+  padding: 0;
+}
+
+.product-quantity {
+  grid-area: product-quantity;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-delete {
+  grid-area: product-delete;
+  padding: 5px;
+  border: 1px solid var(--orange);
+  margin: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#order-goods .product img {
+  width: 100%;
+}
+
+#order-goods .product b {
+  text-transform: uppercase;
+}
+
+#order-goods .product i {
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 4px;
+  cursor: pointer;
+}
+
+#order-goods .product i::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: maroon;
+  -webkit-transform: rotate(50deg);
+  transform: rotate(50deg);
+}
+
+#order-goods .product i::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: maroon;
+  -webkit-transform: rotate(-50deg);
+  transform: rotate(-50deg);
+}
+
+/* кнопки та кількість товарів */
+#order-goods .product span {
+  display: inline-block;
+}
+
+/* кількість */
+#order-goods .product .number {
+  color: darkolivegreen;
+  /* outline: 1px solid darkolivegreen; */
+  min-width: 30px;
+  padding: 3px;
+  text-align: center;
+}
+
+/* кнопки +- */
+#order-goods .product .minus,
+#order-goods .product .plus {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#order-goods .product .minus::before,
+#order-goods .product .plus::before,
+#order-goods .product .plus::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 4px;
+  width: 12px;
+  height: 3px;
+  background: maroon;
+}
+
+#order-goods .product .plus::after {
+  content: '';
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/**/
+#order-sum {
+  width: 600px;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+@media(max-width: 640px) {
+  #order-sum {
+    width: 95%;
+  }
 }

@@ -10,6 +10,7 @@
   <meta name="description" content="">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./favicon.png" rel="shortcut icon" type="image/x-icon" />
 
   <link rel="stylesheet" href="css/styles.css">
 
@@ -68,8 +69,10 @@
 
   <div id="basket">
     <div>Товарів: <span id="basket-quantity">0</span> | На суму: <span id="basket-sum">0</span></div>
+    <hr>
     <div id="basket-goods"></div>
-    <div><span id="basket-order">Оформити</span> | <span id="basket-clear">Видалити</span></div>
+    <hr>
+    <div><a href="checkout.html" id="basket-order" tabindex="1">Оформити</a> | <span id="basket-clear" tabindex="2">Видалити</span></div>
   </div>
   <!-- #basket -->
 
@@ -214,7 +217,8 @@
         <p>ipsum</p>
         <p>105</p>
         <p>130*180</p>
-        <span class="button" data-name="ipsum" data-price="105" data-size="130*180"></span>
+        <span class="button" data-name="ipsum" data-price="105" data-size="130*180" data-img="temp/01.jpg"></span>
+
       </figcaption>
     </figure>
     <figure data-item='dolor,110,130'>
@@ -225,7 +229,7 @@
         <p>dolor</p>
         <p>110</p>
         <p>130*180</p>
-        <span class="button" data-name="dolor" data-price="110" data-size="130*180"></span>
+        <span class="button" data-name="dolor" data-price="110" data-size="130*180" data-img="temp/02.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='lorem,15,50'>
@@ -236,7 +240,7 @@
         <p>lorem</p>
         <p>15</p>
         <p>50*20</p>
-        <span class="button" data-name="lorem" data-price="15" data-size="50*20"></span>
+        <span class="button" data-name="lorem" data-price="15" data-size="50*20" data-img="temp/03.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='sit amet,98,150'>
@@ -247,7 +251,7 @@
         <p>sit amet</p>
         <p>98</p>
         <p>150*200</p>
-        <span class="button" data-name="sit amet" data-price="98" data-size="150*200"></span>
+        <span class="button" data-name="sit amet" data-price="98" data-size="150*200" data-img="temp/04.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='consectetur,102,120'>
@@ -258,7 +262,7 @@
         <p>consectetur</p>
         <p>102</p>
         <p>120*170</p>
-        <span class="button" data-name="consectetur" data-price="102" data-size="120*170"></span>
+        <span class="button" data-name="consectetur" data-price="102" data-size="120*170" data-img="temp/05.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='adipisicing,112,130'>
@@ -269,7 +273,7 @@
         <p>adipisicing</p>
         <p>112</p>
         <p>135*180</p>
-        <span class="button" data-name="adipisicing" data-price="112" data-size="135*180"></span>
+        <span class="button" data-name="adipisicing" data-price="112" data-size="135*180" data-img="temp/06.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='elit,91,140'>
@@ -280,7 +284,7 @@
         <p>elit</p>
         <p>91</p>
         <p>140*180</p>
-        <span class="button" data-name="elit" data-price="91" data-size="140*180"></span>
+        <span class="button" data-name="elit" data-price="91" data-size="140*180" data-img="temp/07.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='Quaerat,75,120'>
@@ -291,7 +295,7 @@
         <p>Quaerat</p>
         <p>75</p>
         <p>120*210</p>
-        <span class="button" data-name="Quaerat" data-price="75" data-size="120*210"></span>
+        <span class="button" data-name="Quaerat" data-price="75" data-size="120*210" data-img="temp/08.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='repellendus,84,120'>
@@ -302,7 +306,7 @@
         <p>repellendus</p>
         <p>84</p>
         <p>120*220</p>
-        <span class="button" data-name="repellendus" data-price="84" data-size="120*220"></span>
+        <span class="button" data-name="repellendus" data-price="84" data-size="120*220" data-img="temp/09.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='magni,82,140'>
@@ -313,7 +317,7 @@
         <p>magni</p>
         <p>82</p>
         <p>140*80</p>
-        <span class="button" data-name="magni" data-price="82" data-size="140*80"></span>
+        <span class="button" data-name="magni" data-price="82" data-size="140*80" data-img="temp/10.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='Deleniti,501,530'>
@@ -324,7 +328,7 @@
         <p>Deleniti</p>
         <p>501</p>
         <p>530*190</p>
-        <span class="button" data-name="Deleniti" data-price="501" data-size="530*190"></span>
+        <span class="button" data-name="Deleniti" data-price="501" data-size="530*190" data-img="temp/01.jpg"></span>
       </figcaption>
     </figure>
     <figure data-item='cupiditate,96,130'>
@@ -335,7 +339,7 @@
         <p>cupiditate</p>
         <p>96</p>
         <p>130*200</p>
-        <span class="button" data-name="cupiditate" data-price="96" data-size="130*200"></span>
+        <span class="button" data-name="cupiditate" data-price="96" data-size="130*200" data-img="temp/02.jpg"></span>
       </figcaption>
     </figure>
   </section>
