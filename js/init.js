@@ -45,20 +45,11 @@ $('#basket-button').on('click', function(){
 	});
 });
 
-
-
 $(window).scroll(function() {
 	if ($(this).scrollTop() > 100) {
-		// $('#up').fadeIn();
 		$('#header').addClass('top');
 	} else {
-		// $('#up').fadeOut();
 		$('#header').removeClass('top');
 }
 					
-// $('#up').click(function(){
-// 	$("html, body").animate({ scrollTop: 0 }, 600);
-// 		return false;
-// 	});
-
 });
