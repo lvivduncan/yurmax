@@ -623,15 +623,15 @@
   margin: 0 0 10px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     'product-img product-img product-name product-name product-delete'
     'product-size product-price product-price product-quantity product-delete';
 }
 
-@media(max-width: 640px){
+@media(max-width: 640px) {
   #order-goods .product {
     grid-template-columns: 4fr 1fr;
-    grid-template-areas: 
+    grid-template-areas:
       'product-name product-delete'
       'product-img product-delete'
       'product-size product-delete'
@@ -647,24 +647,27 @@
 .product-img {
   grid-area: product-img;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
 }
 
 .product-name {
   grid-area: product-name;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
 }
 
 .product-size {
   grid-area: product-size;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
   text-align: center;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -673,24 +676,26 @@
 .product-price {
   grid-area: product-price;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
   text-align: center;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
 }
 
-#order-goods .product .product-price p{
+#order-goods .product .product-price p {
   padding: 0;
 }
 
 .product-quantity {
   grid-area: product-quantity;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
   text-align: center;
 
@@ -702,7 +707,8 @@
 .product-delete {
   grid-area: product-delete;
   padding: 5px;
-  border: 1px solid var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background: var(--ivory);
   margin: 5px;
 
   display: flex;
