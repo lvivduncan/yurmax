@@ -647,7 +647,7 @@
 .product-img {
   grid-area: product-img;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
 }
@@ -655,7 +655,7 @@
 .product-name {
   grid-area: product-name;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
 }
@@ -663,7 +663,7 @@
 .product-size {
   grid-area: product-size;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
@@ -676,7 +676,7 @@
 .product-price {
   grid-area: product-price;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
@@ -694,7 +694,7 @@
 .product-quantity {
   grid-area: product-quantity;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
@@ -707,7 +707,7 @@
 .product-delete {
   grid-area: product-delete;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   background: var(--ivory);
   margin: 5px;
 
