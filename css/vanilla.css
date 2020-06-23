@@ -605,14 +605,33 @@
 оформлення замовлення
 ////////////////// */
 #order-goods {
-  width: 600px;
-  margin: 100px auto 10px;
+  margin: 50px auto 10px;
   padding: 10px;
 }
 
-@media(max-width: 640px) {
+#order-goods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+  margin: 40px auto;
+}
+
+@media(max-width: 776px) {
   #order-goods {
-    width: 95%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media(max-width: 520px) {
+  #order-goods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 410px) {
+  #order-goods {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -640,14 +659,10 @@
   }
 }
 
-#order-goods .product:nth-child(even) {
-  background: #e6e6e6;
-}
-
 .product-img {
   grid-area: product-img;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
 }
@@ -655,7 +670,7 @@
 .product-name {
   grid-area: product-name;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
 }
@@ -663,10 +678,11 @@
 .product-size {
   grid-area: product-size;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
+  font-size: 12px;
 
   display: flex;
   justify-content: center;
@@ -676,7 +692,7 @@
 .product-price {
   grid-area: product-price;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
@@ -694,7 +710,7 @@
 .product-quantity {
   grid-area: product-quantity;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
   text-align: center;
@@ -707,7 +723,7 @@
 .product-delete {
   grid-area: product-delete;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   background: var(--ivory);
   margin: 5px;
 
@@ -767,7 +783,6 @@
 /* кількість */
 #order-goods .product .number {
   color: darkolivegreen;
-  /* outline: 1px solid darkolivegreen; */
   min-width: 30px;
   padding: 3px;
   text-align: center;
@@ -792,7 +807,8 @@
   left: 4px;
   width: 12px;
   height: 3px;
-  background: var(--orange);;
+  background: var(--orange);
+  ;
 }
 
 #order-goods .product .plus::after {
@@ -803,14 +819,17 @@
 
 /**/
 #order-sum {
-  width: 600px;
   margin: 10px auto;
   padding: 10px;
   text-align: center;
+  width: 100%;
+  display: inline-block;
 }
 
-@media(max-width: 640px) {
-  #order-sum {
-    width: 95%;
-  }
+#order-sum::before {
+  content: 'Загальна ціна: ';
+}
+
+#order-sum::after {
+  content: ' грн';
 }
