@@ -605,33 +605,14 @@
 оформлення замовлення
 ////////////////// */
 #order-goods {
-  margin: 50px auto 10px;
   padding: 10px;
+  margin: 20px auto;
+  width: 960px;
 }
 
-#order-goods {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  padding: 20px;
-  margin: 40px auto;
-}
-
-@media(max-width: 776px) {
+@media(max-width: 980px) {
   #order-goods {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media(max-width: 520px) {
-  #order-goods {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media(max-width: 410px) {
-  #order-goods {
-    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
   }
 }
 
@@ -640,46 +621,60 @@
 ///////////////////// */
 #order-goods .product {
   margin: 0 0 10px;
+  border: 1px solid var(--first);
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr;
   grid-template-areas:
-    'product-img product-img product-name product-name product-delete'
-    'product-size product-price product-price product-quantity product-delete';
+    'product-delete product-delete product-delete product-delete'
+    'product-img product-description product-quantity product-price';
 }
 
-@media(max-width: 640px) {
+@media(max-width: 776px) {
   #order-goods .product {
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas:
-      'product-name product-delete'
-      'product-img product-delete'
-      'product-size product-delete'
-      'product-price product-delete'
-      'product-quantity product-delete';
+      'product-delete product-delete'
+      'product-img product-description'
+      'product-quantity product-price';
+  }
+}
+
+@media(max-width: 500px) {
+  #order-goods .product {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'product-delete'
+      'product-img'
+      'product-description'
+      'product-quantity'
+      'product-price';
   }
 }
 
 .product-img {
   grid-area: product-img;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
   margin: 5px;
 }
 
-.product-name {
-  grid-area: product-name;
+
+.product-description {
+  grid-area: product-description;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
+  margin: 5px;
+}
+
+.product-description p {
+  padding: 0 0 5px;
+}
+
+.product-name {
+  padding: 5px;
   margin: 5px;
 }
 
 .product-size {
-  grid-area: product-size;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
   margin: 5px;
   text-align: center;
   font-size: 12px;
@@ -692,8 +687,6 @@
 .product-price {
   grid-area: product-price;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
   margin: 5px;
   text-align: center;
 
@@ -710,8 +703,6 @@
 .product-quantity {
   grid-area: product-quantity;
   padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
   margin: 5px;
   text-align: center;
 
@@ -722,14 +713,7 @@
 
 .product-delete {
   grid-area: product-delete;
-  padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  background: var(--ivory);
-  margin: 5px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 5px 0 0 10px;
 }
 
 #order-goods .product img {
@@ -775,12 +759,10 @@
   transform: rotate(-50deg);
 }
 
-/* кнопки та кількість товарів */
 #order-goods .product span {
   display: inline-block;
 }
 
-/* кількість */
 #order-goods .product .number {
   color: darkolivegreen;
   min-width: 30px;
@@ -788,7 +770,6 @@
   text-align: center;
 }
 
-/* кнопки +- */
 #order-goods .product .minus,
 #order-goods .product .plus {
   position: relative;
@@ -817,7 +798,7 @@
   transform: rotate(90deg);
 }
 
-/**/
+/*Загальна ціна*/
 #order-sum {
   margin: 10px auto;
   padding: 10px;
