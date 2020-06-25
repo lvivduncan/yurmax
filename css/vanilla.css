@@ -814,3 +814,38 @@
 #order-sum::after {
   content: ' грн';
 }
+
+
+/* форма */
+#order-form{
+  width: 600px;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: center;  
+}
+
+#order-form form{
+  display: block;
+}
+
+#order-form input[type="text"]{
+  display: block;
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+#order-form textarea{
+  display: block;
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+}
+
+#order-form input[type="submit"]{
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
