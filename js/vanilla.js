@@ -5,13 +5,16 @@
 { const t = document.querySelectorAll("#levus-buttons span"), e = document.querySelectorAll("#levus-items figure"); function sort(t) { const s = []; e.forEach(e => s.push(e.dataset.item.split(",")[t])), isNaN(+s[0]) ? s.sort() : s.sort((t, e) => t - e), e.forEach(e => { s.forEach((o, r) => { o == e.dataset.item.split(",")[t] && (e.style.order = s.indexOf(s[r])) }) }) } function sortByName() { sort(0) } function sortByPrice() { sort(1) } function sortBySize() { sort(2) } t.length > 0 && (t[0].addEventListener("click", sortByName), t[1].addEventListener("click", sortByPrice), t[2].addEventListener("click", sortBySize)) }
 
 // https://github.com/lvivduncan/levus-shop
-// 20-06-2020 
-
+// 25-06-2020 
 // назва сховища
 const BASKET = 'basket';
 
 // клас, що відповідає за кошик на сторінці -- загальна ціна, кількість товарів, товари тощо
 class Basket {
+
+	static getBasketButton(){
+		return document.querySelector('#basket-button');
+	}
 
 	static getQuantity() {
 		return document.querySelector('#basket-quantity');
@@ -27,6 +30,18 @@ class Basket {
 
 	static getClear() {
 		return document.querySelector('#basket-clear');
+	}
+
+	// показуємо кількість товарів у батоні + сам батон
+	static viewBasketButton(){
+		// якщо у сховищі є щось
+		if (Storage.has()) {
+			Basket.getBasketButton().innerHTML = Storage.get().reduce((sum, item) => sum += +item.number, 0);
+			Basket.getBasketButton().style.display = 'block';
+		} else {
+			Basket.getBasketButton().innerHTML = '';
+			Basket.getBasketButton().style.display = 'none';
+		}
 	}
 
 	// опрацьовуємо дані
@@ -50,6 +65,7 @@ class Basket {
 			Storage.remove(id);
 			Basket.reload();
 			Checkout.reload();
+			Form.reload();
 		}
 	}
 
@@ -57,6 +73,7 @@ class Basket {
 	static clearBasket() {
 		Storage.clear();
 		Checkout.reload();
+		Form.reload();
 		Basket.getQuantity().innerHTML = 0;
 		Basket.getSum().innerHTML = 0;
 		Basket.getGoods().innerHTML = '';
@@ -76,6 +93,7 @@ class Basket {
 				Basket.getGoods().innerHTML = '';
 			}
 		}
+		Basket.viewBasketButton();
 	}
 }
 
@@ -97,6 +115,13 @@ class Items {
 		}
 
 		Basket.reload();
+		// fancybox
+
+		$.fancybox.open(`<b>${this.dataset.name}</b> додано у кошик!`);
+		setTimeout(function () {
+			$.fancybox.close();
+		}, 2000);
+
 	}
 }
 
@@ -180,26 +205,24 @@ class Checkout {
 			const data = Storage.get()
 				.reduce((sum, item, i) => sum + `
 					<div data-id="${i}" class="product">
-            <div class="product-delete">
-              <i></i>
-            </div>									
 						<div class="product-img">
 							<img src="${item.img}" alt="">
-            </div>
-            <div class="product-description">
-              <p><b>${item.name}</b></p>
-              <p>${item.size}</p>
-              <p>${item.price}грн</p>
-            </div>
-						<div class="product-quantity">
-              <span class="minus"></span>
-              <span class="number">${item.number}</span>
-              <span class="plus"></span>
 						</div>
+						<div class="product-name">${item.name}</div>
+						<div class="product-size">${item.size}</div>
 						<div class="product-price">
-							<p><b>${item.price * item.number}</b>грн</p>
+							<small>${item.price}грн</small> 
+							<p>${item.price * item.number}грн</p>
 						</div>
-					</div>`, '');
+						<div class="product-quantity">
+							<span class="minus"></span>
+							<span class="number">${item.number}</span>
+							<span class="plus"></span>
+						</div>
+						<div class="product-delete">
+							<i></i>
+						</div>									
+					</div>`, ''); // todo: delete 'грн'
 			return data;
 		}
 	}
@@ -228,6 +251,7 @@ class Checkout {
 		Storage.set(data);
 		Checkout.reload();
 		Basket.reload();
+		Form.reload();
 	}
 
 	// 1 метод, який оновлює дані 
@@ -237,13 +261,36 @@ class Checkout {
 			if (Storage.has()) {
 				Checkout.getOrderGoods().innerHTML = Checkout.viewGoods();
 				Checkout.getOrderSum().innerHTML = Checkout.viewSum();
+				Form.reload();
 			} else {
 				Checkout.getOrderGoods().innerHTML = '';
 				Checkout.getOrderSum().innerHTML = '';
 			}
 		}
+		Basket.viewBasketButton();
 	}
 
+}
+
+// форма замовлення
+class Form {
+
+	static reload() {
+		if (document.querySelector('#order-form') !== null) {
+			// якщо у кошикові щось є -- показати форму
+			if (Storage.has()) {
+				document.querySelector('#order-form').innerHTML = `
+					<form>
+						<p><input type="text" placeholder="Ім'я"></p>
+						<p><textarea placeholder="Примітка"></textarea></p>
+						<input type="submit" value="Замовити!">
+					</form>
+				`;
+			} else {
+				document.querySelector('#order-form').innerHTML = '';
+			}
+		}
+	}
 }
 
 // клік на кнопці "button"
@@ -262,4 +309,4 @@ Basket.getGoods() && Basket.getGoods().addEventListener('click', Basket.removeGo
 Checkout.reload();
 
 // видаляємо/змінюємо кількість
-Checkout.getOrderGoods().addEventListener('click', e => Checkout.changeGoods(e));
+Checkout.getOrderGoods() && Checkout.getOrderGoods().addEventListener('click', e => Checkout.changeGoods(e));
